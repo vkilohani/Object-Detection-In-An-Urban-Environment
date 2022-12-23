@@ -302,7 +302,7 @@ There still is quite some scope for improvement:
 
 It would be interesting to see how a more complex model, further augmentations (e.g. decreasing image quality) and more data could improve the quality of image detection.
 
-#### References Used for Configuring the Config File
+#### References Used
 
 ##### Reading tfrecords
 
