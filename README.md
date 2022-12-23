@@ -6,33 +6,63 @@
 
 ### Classroom Workspace
 
-In the classroom workspace, every library and package should already be 
-installed in your environment. You will NOT need to make use of `gcloud` to 
+In the classroom workspace, every library and package should already be
+installed in your environment. You will NOT need to make use of `gcloud` to
 download the images.
 
 ## Data
 
-The data used for this project exists in the udacity workspace in the form of 
+The data used for this project exists in the udacity workspace in the form of
 `.tfrecord` files. These files have not been uploaded to github.
 
 ## Project Folder Structure
 
+The project viewed from its root directory has the following structure:
+
+```sh
+.
+├── LICENSE.md
+├── Project_Writeup.md
+├── README.md
+├── References.md
+├── edit_config.py
+├── experiments
+│   ├── EXP-01
+│   │   └── pipeline_exp_01.config
+│   ├── EXP-02
+│   │   └── pipeline_exp_02.config
+│   ├── EXP-03
+│   │   └── pipeline_exp_03.config
+│   ├── exporter_main_v2.py
+│   ├── label_map.pbtxt
+│   ├── model_main_tf2.py
+│   └── reference
+│       └── pipeline_reference.config
+├── filenames.txt
+├── inference_video.py
+├── label_map.pbtxt
+├── launch_jupyter.sh
+├── pipeline.config
+├── requirements.txt
+├── utils.py
+└── writeup_images
+```
 
 ## Notebooks
 
 ### Exploratory Data Analysis
 
 The `Exploratory Data Analysis` notebook has some basic data exploration. The
- most important function is `display_images`, which displays a specified 
-number images with bounding boxes in a customizable grid format. The color 
-code used for the bounding boxes is: red for cars, blue for pedestrians and 
+ most important function is `display_images`, which displays a specified
+number images with bounding boxes in a customizable grid format. The color
+code used for the bounding boxes is: red for cars, blue for pedestrians and
 green for cyclists.
 
 
 ### Explore augmentations
 
-The `Explore augmentations` notebook visualizes the effect of different 
-augmentations. As described later, this notebook will use different config files 
+The `Explore augmentations` notebook visualizes the effect of different
+augmentations. As described later, this notebook will use different config files
 through which we can incorporate different augmentation effects on our train
 dataset.
 
@@ -56,15 +86,15 @@ The instructions for carrying out an experiment are given here:
 
 ### Edit the config file
 
-Now we are ready for training. The Tf Object Detection API relies on 
-**config files**. The config that we will use for this project is 
-`pipeline.config`, which is the config for a SSD Resnet 50 640x640 model. 
+Now we are ready for training. The Tf Object Detection API relies on
+**config files**. The config that we will use for this project is
+`pipeline.config`, which is the config for a SSD Resnet 50 640x640 model.
 You can learn more about the Single Shot Detector [here](https://arxiv.org/pdf/1512.02325.pdf).
 
 First, download the [pretrained model](http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8.tar.gz) and move it to `./experiments/pretrained_model/`.
 
-We need to edit the config files to change the location of the training and 
-validation files, as well as the location of the label_map file, pretrained 
+We need to edit the config files to change the location of the training and
+validation files, as well as the location of the label_map file, pretrained
 weights. We also need to adjust the batch size. To do so, run the following:
 ```
 python edit_config.py --train_dir /home/workspace/data/train/ --eval_dir /home/workspace/data/val/ --batch_size 2 --checkpoint /home/workspace/experiments/pretrained_model/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8/checkpoint/ckpt-0 --label_map /home/workspace/experiments/label_map.pbtxt
@@ -73,25 +103,25 @@ A new config file, `pipeline_new.config`, will be created in the root folder.
 
 ### Training
 
-We can now launch an experiment with the Tensorflow object detection 
-API. Move the `pipeline_new.config` to the `./experiments/new_experiment` folder. 
+We can now launch an experiment with the Tensorflow object detection
+API. Move the `pipeline_new.config` to the `./experiments/new_experiment` folder.
 Configure it with appropriate augmentations and hyperparameters for training.
 Now from the root directory of the project launch the training process:
 * a training process:
 ```
-python experiments/model_main_tf2.py --model_dir=experiments/new_experiment/ --pipeline_config_path=experiments/new_experiment/pipeline_new.config
+python experiments/model_main_tf2.py --model_dir=experiments/new_experiment/ --pipeline_config_path=experiments/new_experiment/pipeline_new.config --checkpoint_every_n 500
 ```
 Once the training is finished, launch the evaluation process:
 * an evaluation process:
 ```
-python experiments/model_main_tf2.py --model_dir=experiments/new_experiment/ --pipeline_config_path=experiments/new_experiment/pipeline_new.config --checkpoint_dir=experiments/reference/
+python experiments/model_main_tf2.py --model_dir=experiments/new_experiment/ --pipeline_config_path=experiments/new_experiment/pipeline_new.config --checkpoint_dir=experiments/new_experiment/
 ```
 
-**Note**: Both processes will display some Tensorflow warnings, which can be 
+**Note**: Both processes will display some Tensorflow warnings, which can be
 ignored. You may have to kill the evaluation script manually using
 `CTRL+C`.
 
-To monitor the training, you can launch a tensorboard instance by running 
+To monitor the training, you can launch a tensorboard instance by running
 `python -m tensorboard.main --logdir experiments/new_experiment/`.
 
 
@@ -105,7 +135,7 @@ python experiments/exporter_main_v2.py --input_type image_tensor --pipeline_conf
 
 This should create a new folder `experiments/new_experiment/exported/saved_model`. You can read more about the Tensorflow SavedModel format [here](https://www.tensorflow.org/guide/saved_model).
 
-Finally, you can create a video of your model's inferences for any tf record file. 
+Finally, you can create a video of your model's inferences for any tf record file.
 To do so, run the following command (modify it to your files):
 ```
 python inference_video.py --labelmap_path label_map.pbtxt --model_path experiments/new_experiment/exported/saved_model --tf_record_path /data/test/segment-12200383401366682847_2552_140_2572_140_with_camera_labels.tfrecord --config_path experiments/new_experiment/pipeline_new.config --output_path animation.gif
