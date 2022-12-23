@@ -135,13 +135,15 @@ The above augmentations were employed in the experiments. The experiments are la
 
 - `batch_size: 4`
 - `num_steps: 2500`
--   ```sh
-cosine_decay_learning_rate {
-          learning_rate_base: 0.0004
-          total_steps: 2500
-          warmup_learning_rate: 0.0002
-          warmup_steps: 200
-        }
+-  
+
+  ```sh
+      cosine_decay_learning_rate {
+              learning_rate_base: 0.0004
+              total_steps: 2500
+              warmup_learning_rate: 0.0002
+              warmup_steps: 200
+            }
   ```
 
 **Runtime Modification**
@@ -178,14 +180,16 @@ To reduce overfitting during training, we also add dropout this time.
 - `num_steps: 3000`
 -  Added `aspect_ratios: 0.33`
 -  Changed `scales_per_octave: 3`
-- ```sh
+-
+```sh
 weight_shared_convolutional_box_predictor {
   ...
   use_dropout: true
   dropout_keep_probability: 0.8
 }
 ```
-- ```sh
+-
+```sh
 learning_rate {
         cosine_decay_learning_rate {
           learning_rate_base: 0.001
@@ -231,7 +235,8 @@ The inspiration for this modification comes from the third animation video produ
 - `num_steps: 3000`
 -  Added `aspect_ratios: 0.33`
 -  Changed `scales_per_octave: 3`
-- ```sh
+-
+```sh
 weight_shared_convolutional_box_predictor {
   ...
   use_dropout: true
