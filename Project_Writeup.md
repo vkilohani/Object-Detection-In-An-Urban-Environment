@@ -2,7 +2,7 @@
 
 ### Project overview
 
-This project involves using the Tensorflow Object Detection API to identify cars, pedestrians and cyclists. Object Detection is an integral part of a self-driving car system as a self-driving car needs to perceive its surroundings and interpret the objects around it accurately in order to make autonomous movements. The current project, which involves only 3 classes of objects - viz. `vehicle`, `pedestria` and `cyclist` - is obviously a highly simplified version of a realistic self-driving car's image identification unit.
+This project involves using the Tensorflow Object Detection API to identify cars, pedestrians and cyclists. Object Detection is an integral part of a self-driving car system as a self-driving car needs to perceive its surroundings and interpret the objects around it accurately in order to make autonomous movements. The current project, which involves only 3 classes of objects - viz. `vehicle`, `pedestrian` and `cyclist` - is obviously a highly simplified version of a realistic self-driving car's image identification unit.
 
 ### Set up
 Please refer to `README.md` in the project root folder.
@@ -19,30 +19,30 @@ The dataset contains 1719 images in total across all tfrecords in the `data/trai
 We observe the occurrence frequency to be the highest for `vehicle` (29710), followed by `pedestrian` (8355), followed by `cyclist` (214). As such there definitely is strong imbalance
 in the classes that appear in our dataset.
 
-<img src="writeup_images/class_frequency_hist.png" alt="drawing" width="300"/>
+<img src="writeup_images/class_frequency_hist.png" alt="drawing" width="600"/>
 
 <br/><br/>
 The basic statistics for each of these classes are shown below. To get an idea about the variability of aspect ratio (= width/height) and diagonal-size of bounding boxes for each class (in pixels), we plot the individual class histograms as well:
 <br> </br>
 ##### Vehicle
 <br/><br/>
-<img src="writeup_images/df_1.png" alt="drawing" width="600"/>
-<img src="writeup_images/vehicle_AR.png" alt="drawing" width="600"/>
-<img src="writeup_images/vehicle_SIZE.png" alt="drawing" width="600"/>
+<img src="writeup_images/df_1.png" alt="drawing" width="800"/>
+<img src="writeup_images/vehicle_AR.png" alt="drawing" width="800"/>
+<img src="writeup_images/vehicle_SIZE.png" alt="drawing" width="800"/>
 <br> </br>
 
 ##### Pedestrian
 <br/><br/>
-<img src="writeup_images/df_2.png" alt="drawing" width="600"/>
-<img src="writeup_images/pedestrian_AR.png" alt="drawing" width="600"/>
-<img src="writeup_images/pedestrian_SIZE.png" alt="drawing" width="600"/>
+<img src="writeup_images/df_2.png" alt="drawing" width="800"/>
+<img src="writeup_images/pedestrian_AR.png" alt="drawing" width="800"/>
+<img src="writeup_images/pedestrian_SIZE.png" alt="drawing" width="800"/>
 <br> </br>
 
 ##### Cyclist
 <br/><br/>
-<img src="writeup_images/df_4.png" alt="drawing" width="600"/>
-<img src="writeup_images/cyclist_AR.png" alt="drawing" width="600"/>
-<img src="writeup_images/cyclist_SIZE.png" alt="drawing" width="600"/>
+<img src="writeup_images/df_4.png" alt="drawing" width="800"/>
+<img src="writeup_images/cyclist_AR.png" alt="drawing" width="800"/>
+<img src="writeup_images/cyclist_SIZE.png" alt="drawing" width="800"/>
 
 
 ### Training
@@ -314,8 +314,10 @@ It would be interesting to see how a more complex model, further augmentations (
 
 ##### Pipeline Configuration
 
-4. [Neptune AI, TFOD - Part I](https://neptune.ai/blog/how-to-train-your-own-object-detector-using-tensorflow-object-detection-api)
+4. [Preprocessor.proto](https://github.com/tensorflow/models/blob/master/research/object_detection/protos/preprocessor.proto)
 
-5. [Neptune AI, TFOD - Part II](https://neptune.ai/blog/tensorflow-object-detection-api-best-practices-to-training-evaluation-deployment)
+5. [Neptune AI, TFOD - Part I](https://neptune.ai/blog/how-to-train-your-own-object-detector-using-tensorflow-object-detection-api)
 
-6. [Facebook team's paper on SGD training](https://arxiv.org/abs/1706.02677)
+6. [Neptune AI, TFOD - Part II](https://neptune.ai/blog/tensorflow-object-detection-api-best-practices-to-training-evaluation-deployment)
+
+7. [Facebook team's paper on SGD training](https://arxiv.org/abs/1706.02677)
