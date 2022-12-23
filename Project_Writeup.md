@@ -243,25 +243,27 @@ weight_shared_convolutional_box_predictor {
   dropout_keep_probability: 0.8
 }
 ```
-- ```sh
-learning_rate {
-        cosine_decay_learning_rate {
-          learning_rate_base: 0.001
-          total_steps: 3500
-          warmup_learning_rate: 0.0002
-          warmup_steps: 300
-        }
-  ```
--  ```sh
-    batch_non_max_suppression {
-        score_threshold: 0.2
-        iou_threshold: 0.6
-        max_detections_per_class: 200
-        max_total_detections: 300
-        use_static_shapes: false
-        use_class_agnostic_nms: true
-      }
-    ```
+-
+      ```sh
+      learning_rate {
+              cosine_decay_learning_rate {
+                learning_rate_base: 0.001
+                total_steps: 3500
+                warmup_learning_rate: 0.0002
+                warmup_steps: 300
+              }
+        ```
+-  
+      ```sh
+          batch_non_max_suppression {
+              score_threshold: 0.2
+              iou_threshold: 0.6
+              max_detections_per_class: 200
+              max_total_detections: 300
+              use_static_shapes: false
+              use_class_agnostic_nms: true
+            }
+          ```
 
 **Runtime Modification**
 - `checkpoint_every_n = 1000`
