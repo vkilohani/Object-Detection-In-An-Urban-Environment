@@ -25,18 +25,21 @@ in the classes that appear in our dataset.
 The basic statistics for each of these classes are shown below. To get an idea about the variability of aspect ratio (= width/height) and diagonal-size of bounding boxes for each class (in pixels), we plot the individual class histograms as well:
 <br> </br>
 ##### Vehicle
+<br/><br/>
 <img src="writeup_images/df_1.png" alt="drawing" width="600"/>
 <img src="writeup_images/vehicle_AR.png" alt="drawing" width="600"/>
 <img src="writeup_images/vehicle_SIZE.png" alt="drawing" width="600"/>
 <br> </br>
 
 ##### Pedestrian
+<br/><br/>
 <img src="writeup_images/df_2.png" alt="drawing" width="600"/>
 <img src="writeup_images/pedestrian_AR.png" alt="drawing" width="600"/>
 <img src="writeup_images/pedestrian_SIZE.png" alt="drawing" width="600"/>
 <br> </br>
 
 ##### Cyclist
+<br/><br/>
 <img src="writeup_images/df_4.png" alt="drawing" width="600"/>
 <img src="writeup_images/cyclist_AR.png" alt="drawing" width="600"/>
 <img src="writeup_images/cyclist_SIZE.png" alt="drawing" width="600"/>
@@ -129,7 +132,7 @@ From the `Explore augmentations.ipynb` notebook, we can check out some sample im
 
 The above augmentations were employed in the experiments. The experiments are labelled as `EXP-01`, `EXP-02` etc.
 
-##### EXP-01
+#### EXP-01
 
 **Changes to the config file**
 
@@ -168,7 +171,7 @@ Remarks: This spells some good news for us. For one, we have some bounding boxes
 
 Another issue is that the fluctuations in the loss can be reduced by choosing a higher `batch_size`. This should be accompanied by increase in the `learning_rate`. We rectify this with a subsequent improved run.
 
-##### EXP-02
+#### EXP-02
 
 **Changes to the config file**
 
@@ -299,9 +302,9 @@ There still is quite some scope for improvement:
 
 It would be interesting to see how a more complex model, further augmentations (e.g. decreasing image quality) and more data could improve the quality of image detection.
 
-##### References Used for Configuring the Config File
+#### References Used for Configuring the Config File
 
-###### Reading tfrecords
+##### Reading tfrecords
 
 1. [Eric Thomson Github](https://github.com/EricThomson/tfrecord-view)
 
@@ -309,7 +312,7 @@ It would be interesting to see how a more complex model, further augmentations (
 
 3. [TFRecord Official Documentation](https://www.tensorflow.org/tutorials/load_data/tfrecord)
 
-###### Pipeline Configuration
+##### Pipeline Configuration
 
 4. [Neptune AI, TFOD - Part I](https://neptune.ai/blog/how-to-train-your-own-object-detector-using-tensorflow-object-detection-api)
 
